@@ -12,8 +12,18 @@
 */
 
 long long factorial(int n) {
-    // TODO: compute factorial iteratively
-    return 1; // placeholder
+    long long result = 1; 
+    
+    
+    if(n<0){
+       return -1; // TODO: compute factorial iteratively
+}  // placeholder
+
+for (int i = 1; i <= n; i++) {
+        result *= i;
+    }
+
+    return result;
 }
 
 int main(void) {
@@ -22,7 +32,16 @@ int main(void) {
     printf("Enter a non-negative integer n: ");
     scanf("%d", &n);
 
-    // TODO: validate input, call function, print result
+    if (n<0){
+        printf("Error: n must be a non-negative integer.\n");
+    } else {// TODO: validate input, call function, print result
+      long long result = factorial(n);
 
+       if (result == -1) {
+            printf("Error. factorial is not defined for negative numbers.\n");
+        } else {
+            printf("The factorial of %d is: %lld\n", n, result);
+        }
+    }
     return 0;
 }
