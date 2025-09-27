@@ -31,7 +31,7 @@ int main(void) {
     printf("Enter an integer n (>= 2): ");
     scanf("%d", &n);
 
-     if (n < 2) {
+     if (n<2) {
         printf("Error: n must be >= 2.\n");
         return 1;   // Exit with error
     }
