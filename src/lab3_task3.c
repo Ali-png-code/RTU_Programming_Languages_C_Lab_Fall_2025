@@ -1,6 +1,7 @@
 /*
  * Lab 3, Task 3
  * Student Name, Student ID
+ * Ali Isayev, 241ADB069
  *
  * Implement basic string handling functions.
  * Write your own versions of:
@@ -27,6 +28,7 @@ void my_strcpy(char *dest, const char *src);
 
 int main(void) {
     // TODO: Test your functions here
+
     char test[] = "Programming in C";
     char copy[100];
 
@@ -39,12 +41,21 @@ int main(void) {
     return 0;
 }
 
-// Implement functions below
 int my_strlen(const char *str) {
     // TODO: count characters until '\0'
-    return 0; // placeholder
+    const char *ptr = str;
+    while (*ptr != '\0') {
+        ptr++;
+    }
+    return ptr - str;  // pointer difference gives length
 }
 
 void my_strcpy(char *dest, const char *src) {
     // TODO: copy characters until '\0'
+    while (*src != '\0') {
+        *dest = *src;
+        dest++;
+        src++;
+    }
+    *dest = '\0';  
 }
