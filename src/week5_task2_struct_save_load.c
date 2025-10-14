@@ -28,22 +28,46 @@ int main(void) {
     const char *filename = "student.txt";
 
     // TODO: Call save_student() to save student data to file
+    save_student(s1, filename);
     // TODO: Call load_student() to read data back into a new struct
+     Student loaded = load_student(filename);
     // TODO: Print loaded data to confirm correctness
+     printf("\n--- Loaded Student Data ---\n");
+    printf("Name: %s\n", loaded.name);
+    printf("Age: %d\n", loaded.age);
+    printf("GPA: %.2f\n", loaded.gpa);
+
 
     return 0;
 }
 
 // TODO: Implement save_student()
+
 // Open file for writing, check errors, write fields, then close file
 void save_student(Student s, const char *filename) {
-    // ...
+    FILE *fp = fopen(filename, "w");
+    if (fp == NULL) {
+        perror("Error opening file for writing");
+        exit(EXIT_FAILURE);
 }
 
 // TODO: Implement load_student()
+
 // Open file for reading, check errors, read fields, then close file
-Student load_student(const char *filename) {
+Student load_student(const char *filename){
     Student s;
-    // ...
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        perror("Error opening file for reading");
+        exit(EXIT_FAILURE);
+    }
+    if (fscanf(fp, "%49s %d %f", s.name, &s.age, &s.gpa) != 3) {
+        fprintf(stderr, "Error reading data from file.\n");
+        fclose(fp);
+        exit(EXIT_FAILURE);
+    }
+
+    fclose(fp);
+    printf("Student data loaded successfully from '%s'.\n", filename);
     return s;
 }

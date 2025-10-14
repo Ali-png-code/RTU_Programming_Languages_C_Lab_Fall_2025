@@ -1,0 +1,3 @@
+This is line 1: Hello, file I/O! I'm Ali
+This is line 2: texting it to a file.
+This is line 3: C programming is fun for us.
