@@ -22,7 +22,7 @@ Student load_student(const char *filename);
 int main(void) {
     Student s1;
     strcpy(s1.name, "Alice");
-    s1.age = 21;
+    s1.age = 18;
     s1.gpa = 3.75f;
 
     const char *filename = "student.txt";
@@ -32,7 +32,7 @@ int main(void) {
     // TODO: Call load_student() to read data back into a new struct
      Student loaded = load_student(filename);
     // TODO: Print loaded data to confirm correctness
-     printf("\n--- Loaded Student Data ---\n");
+     printf("\n Loaded Student Data\n");
     printf("Name: %s\n", loaded.name);
     printf("Age: %d\n", loaded.age);
     printf("GPA: %.2f\n", loaded.gpa);
@@ -49,18 +49,30 @@ void save_student(Student s, const char *filename) {
     if (fp == NULL) {
         perror("Error opening file for writing");
         exit(EXIT_FAILURE);
+    }
+
+    if (fprintf(fp, "%s %d %.2f\n", s.name, s.age, s.gpa) < 0) {
+        fprintf(stderr, "Error writing data to file.\n");
+        fclose(fp);
+        exit(EXIT_FAILURE);
+    }
+
+    fclose(fp);
+    printf("Student data saved successfull to '%s'.\n", filename);
 }
+
 
 // TODO: Implement load_student()
 
 // Open file for reading, check errors, read fields, then close file
-Student load_student(const char *filename){
+Student load_student(const char *filename) {
     Student s;
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         perror("Error opening file for reading");
         exit(EXIT_FAILURE);
     }
+
     if (fscanf(fp, "%49s %d %f", s.name, &s.age, &s.gpa) != 3) {
         fprintf(stderr, "Error reading data from file.\n");
         fclose(fp);
@@ -68,6 +80,6 @@ Student load_student(const char *filename){
     }
 
     fclose(fp);
-    printf("Student data loaded successfully from '%s'.\n", filename);
+    printf("Student data loaded successfull from '%s'.\n", filename);
     return s;
 }

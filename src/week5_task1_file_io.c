@@ -40,7 +40,7 @@ int main(void) {
         return 1;
     }
 
-    printf("\n--- Reading from file '%s' ---\n", filename);
+    printf("\n- Reading from file '%s' -\n", filename);
     // TODO: 7. Close the file
     while (fgets(line, sizeof(line), fp) != NULL) {
         printf("%s", line);
@@ -55,7 +55,7 @@ int main(void) {
     }
 
     // BONUS: count number of lines read
-    printf("\n--- Total lines read: %d ---\n", lncount);
+    printf("\nTotal lines read: %d -\n", lncount);
 
     return 0;
 }
